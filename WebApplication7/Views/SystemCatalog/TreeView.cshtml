@@ -1,0 +1,28 @@
+﻿@model List<WebApplication7.DBContext.NewCatalogfromSystemcs>
+
+<ul>
+    @foreach (var catalog in Model.Where(c => c.SParentId == null))
+    {
+        <li>
+            <a href="@Url.Action("Details", new { id = catalog.Id })">@catalog.SName</a>
+            @if (HasChildren(catalog.Id))
+            {
+                <ul>
+                    @await Html.PartialAsync("_ChildCatalogs", GetChildren(catalog.Id))
+                </ul>
+            }
+        </li>
+    }
+</ul>
+
+@functions {
+    bool HasChildren(int parentId)
+    {
+        return Model.Any(c => c.SParentId == parentId);
+    }
+
+    List<WebApplication7.DBContext.NewCatalogfromSystemcs> GetChildren(int parentId)
+    {
+        return Model.Where(c => c.SParentId == parentId).ToList();
+    }
+}

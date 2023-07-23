@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Import From OS";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <form method="post" asp-controller="SystemCatalog" asp-action="ImportFromOS">
+        <div class="form-group">
+            <label for="rootPath">Root Path:</label>
+            <input type="text" class="form-control" name="rootPath" id="rootPath" placeholder="Enter the root path" />
+        </div>
+        <button type="submit" class="btn btn-primary">Import From OS</button>
+    </form>
+</div>

@@ -1,0 +1,27 @@
+﻿@model WebApplication7.DBContext.Catalog
+
+@if (ViewBag.Catalog != null)
+{
+    <h1>Details for @ViewBag.Catalog.Name</h1>
+
+    @if (ViewBag.ChildCatalogs.Count > 0)
+    {
+        <h2>Child Catalogs:</h2>
+        <ul>
+            @foreach (var child in ViewBag.ChildCatalogs)
+            {
+                <li>
+                    <a href="@Url.Action("Details", new { id = child.Id })">@child.Name</a>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No child catalogs found.</p>
+    }
+}
+else
+{
+    <p>Catalog not found.</p>
+}

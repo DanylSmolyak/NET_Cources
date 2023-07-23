@@ -1,0 +1,12 @@
+﻿@model List<WebApplication7.DBContext.Catalog>
+
+<h1>Catalogs</h1>
+
+<ul>
+    @foreach (var catalog in Model.Where(c => c.ParentId == null))
+    {
+        <li>
+            <a href="@Url.Action("Details", new { id = catalog.Id })">@catalog.Name</a>
+        </li>
+    }
+</ul>

@@ -1,0 +1,46 @@
+﻿@model List<WebApplication7.DBContext.NewCatalogfromSystemcs>
+
+@{
+    ViewData["Title"] = "System Catalogs";
+}
+
+
+<h1>System Catalogs</h1>
+
+@await Html.PartialAsync("TreeView", Model)
+
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <p>
+        <a asp-area="" asp-controller="SystemCatalog" asp-action="ImportFromOS" class="btn btn-primary">Import System Catalogs from OS</a>
+    </p>
+</div>
+
+@if (Model.Count > 0)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Parent Catalog Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var catalog in Model)
+            {
+                <tr>
+                    <td>@catalog.Id</td>
+                    <td>@catalog.SName</td>
+                    <td>@(catalog.SParentCatalog != null ? catalog.SParentCatalog.Id : 0)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No system catalogs found.</p>
+}
